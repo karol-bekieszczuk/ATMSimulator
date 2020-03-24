@@ -33,6 +33,7 @@ namespace ATMSimulator
                     {
                         var atmForm = new ATM();
                         atmForm.passCurrentUserData(usrDataArr);
+                        this.Hide();
                         atmForm.Show();
                     }
                 }

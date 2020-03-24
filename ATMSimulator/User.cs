@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ATMSimulator
 {
@@ -30,12 +31,12 @@ namespace ATMSimulator
 
         public bool balanceWithdraw(float amount)
         {
-            if (withdrawBalanceCheck(amount))
+            if (canWithdraw(amount))
             {
                 this.balance -= amount;
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         public void balanceDeposit(float amount)
@@ -43,7 +44,7 @@ namespace ATMSimulator
             this.balance += amount;
         }
 
-        private bool withdrawBalanceCheck(float amount)
+        private bool canWithdraw(float amount)
         {
             if ((this.balance - amount) <= 0)
                 return false;
