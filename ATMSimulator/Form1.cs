@@ -31,8 +31,7 @@ namespace ATMSimulator
 
                     if (usrDataArr[3] == cardNumberTextBox.Text && usrDataArr[4] == pinTextBox.Text)
                     {
-                        var atmForm = new ATM();
-                        atmForm.passCurrentUserData(usrDataArr);
+                        var atmForm = new ATM(usrDataArr);
                         this.Hide();
                         atmForm.Show();
                     }
