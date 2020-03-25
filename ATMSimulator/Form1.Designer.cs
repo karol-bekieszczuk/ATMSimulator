@@ -33,6 +33,7 @@
             this.cardNumberTextBox = new System.Windows.Forms.TextBox();
             this.pinTextBox = new System.Windows.Forms.TextBox();
             this.login_button = new System.Windows.Forms.Button();
+            this.notifyLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +63,8 @@
             this.cardNumberTextBox.Size = new System.Drawing.Size(146, 20);
             this.cardNumberTextBox.TabIndex = 2;
             this.cardNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cardNumberTextBox.TextChanged += new System.EventHandler(this.cardNumberTextBox_TextChanged);
+            this.cardNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckTextBoxText_KeyPress);
             // 
             // pinTextBox
             // 
@@ -72,6 +75,8 @@
             this.pinTextBox.TabIndex = 3;
             this.pinTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.pinTextBox.UseSystemPasswordChar = true;
+            this.pinTextBox.TextChanged += new System.EventHandler(this.pinTextBox_TextChanged);
+            this.pinTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckTextBoxText_KeyPress);
             // 
             // login_button
             // 
@@ -83,10 +88,20 @@
             this.login_button.UseVisualStyleBackColor = true;
             this.login_button.Click += new System.EventHandler(this.login_button_Click);
             // 
+            // notifyLbl
+            // 
+            this.notifyLbl.AutoSize = true;
+            this.notifyLbl.Location = new System.Drawing.Point(12, 129);
+            this.notifyLbl.Name = "notifyLbl";
+            this.notifyLbl.Size = new System.Drawing.Size(46, 13);
+            this.notifyLbl.TabIndex = 5;
+            this.notifyLbl.Text = "notifyLbl";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(170, 137);
+            this.ClientSize = new System.Drawing.Size(170, 151);
+            this.Controls.Add(this.notifyLbl);
             this.Controls.Add(this.login_button);
             this.Controls.Add(this.pinTextBox);
             this.Controls.Add(this.cardNumberTextBox);
@@ -109,6 +124,7 @@
         private System.Windows.Forms.TextBox cardNumberTextBox;
         private System.Windows.Forms.TextBox pinTextBox;
         private System.Windows.Forms.Button login_button;
+        private System.Windows.Forms.Label notifyLbl;
     }
 }
 

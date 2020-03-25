@@ -16,31 +16,63 @@ namespace ATMSimulator
         public Form1()
         {
             InitializeComponent();
+            SetNotifyLabel("Hello, please log in", Color.Black);
         }
 
         private void login_button_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach(string usr in File.ReadAllLines($"{Directory.GetCurrentDirectory()}/dummy_data/users.csv", Encoding.UTF8))
+                //string old_dir = $"{Directory.GetCurrentDirectory()}/dummy_data/users.csv";
+                foreach (string usr in File.ReadAllLines(@"C:\test\users.csv", Encoding.UTF8))
                 {
+                    // 1. fName, 2. lName, 3. cardNumber 4. pinHash 5. balance
                     string[] usrDataArr = usr.Split(':');
 
-                    string usrCardNr = usrDataArr[3];
-                    string usrCardPin = usrDataArr[4];
-
-                    if (usrCardNr == cardNumberTextBox.Text && usrCardPin == pinTextBox.Text)
+                    if (usrDataArr[3] == cardNumberTextBox.Text && usrDataArr[4] == pinTextBox.Text)
                     {
                         var atmForm = new ATM();
                         atmForm.passCurrentUserData(usrDataArr);
+                        this.Hide();
                         atmForm.Show();
                     }
                 }
+                SetNotifyLabel("Wrong password or User", Color.Red);
             }
             catch(Exception err)
             {
+                //TODO
+                //Change errors to custom exception handlers
                 MessageBox.Show(err.ToString());
             }
+        }
+
+        private void CheckTextBoxText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Security.CheckTextBoxText_KeyPress(sender, e))
+            {
+                e.Handled = true;
+                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+            }
+        }
+
+        private void cardNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // TODO change error messages to custom exceptions
+            if (!Security.CheckTextboxOnlyNumbers(cardNumberTextBox))
+                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+        }
+
+        private void pinTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!Security.CheckTextboxOnlyNumbers(pinTextBox))
+                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+        }
+
+        private void SetNotifyLabel(string message, Color color)
+        {
+            notifyLbl.Text = message;
+            notifyLbl.ForeColor = color;
         }
     }
 }

@@ -33,9 +33,9 @@ namespace ATMSimulator
             if (withdrawBalanceCheck(amount))
             {
                 this.balance -= amount;
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         public void balanceDeposit(float amount)

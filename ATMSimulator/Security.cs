@@ -16,5 +16,19 @@ namespace ATMSimulator
             // TODO
             return "TODO";
         }
+
+        public static bool CheckTextboxOnlyNumbers(TextBox tb)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(tb.Text, "^[0-9]") && !string.IsNullOrWhiteSpace(tb.Text))
+                return true;
+            return false;
+        }
+
+        public static bool CheckTextBoxText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == ',')
+                return true;
+            return false;
+        }
     }
 }
