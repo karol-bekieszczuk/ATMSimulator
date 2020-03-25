@@ -49,6 +49,6 @@ namespace ATMSimulator
                 return false;
             return true;
         }
-        
+
     }
 }

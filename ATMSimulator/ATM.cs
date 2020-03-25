@@ -12,7 +12,8 @@ namespace ATMSimulator
 {
     public partial class ATM : Form
     {
-        User currectUser;
+        // TODO make atm form inherit from login
+        User currentUser;
 
         public ATM()
         {
@@ -21,8 +22,10 @@ namespace ATMSimulator
 
         private void depositButton_Click(object sender, EventArgs e)
         {
-            if (Security.CheckTextboxOnlyNumbers(depositTextBox)) {
-                currectUser.balanceDeposit(float.Parse(depositTextBox.Text));
+            if (Security.CheckTextboxOnlyNumbers(depositTextBox))
+            {
+                currentUser.balanceDeposit(float.Parse(depositTextBox.Text));
+                SetEditableTextBoxesToZero();
                 SetNotifyLabel("Money deposited", Color.Green);
                 UpdateCurrentUserBalance();
             }
@@ -32,7 +35,7 @@ namespace ATMSimulator
         {
             if (Security.CheckTextboxOnlyNumbers(withdrawTextBox))
             {
-                if(currectUser.balanceWithdraw(float.Parse(withdrawTextBox.Text)))
+                if (currentUser.balanceWithdraw(float.Parse(withdrawTextBox.Text)))
                 {
                     SetNotifyLabel("Money withdrawed", Color.Green);
                     UpdateCurrentUserBalance();
@@ -40,25 +43,27 @@ namespace ATMSimulator
                 else
                     SetNotifyLabel("Cant withdraw, not enough funs", Color.Red);
             }
+            SetEditableTextBoxesToZero();
         }
 
         public void passCurrentUserData(string[] userData)
         {
             // 1. fName, 2. lName, 3. cardNumber 4. pinHash 5. balance
-            currectUser = new User(userData[1], userData[2], userData[3], userData[4], float.Parse(userData[5]));
+            currentUser = new User(userData[1], userData[2], userData[3], userData[4], float.Parse(userData[5]));
 
             UpdateCurrentUserBalance();
             FillWelcomeLbl();
+            SetNotifyLabel(string.Empty, Color.Black);
         }
 
         public void UpdateCurrentUserBalance()
         {
-            balanceTextBox.Text = currectUser.getBalance().ToString();
+            balanceTextBox.Text = currentUser.getBalance().ToString();
         }
 
         private void FillWelcomeLbl()
         {
-            welcomeLbl.Text = $"Welcome {currectUser.fName} {currectUser.lName}";
+            welcomeLbl.Text = $"Welcome {currentUser.fName} {currentUser.lName}";
         }
 
         private void depositTextBox_TextChanged(object sender, EventArgs e)
@@ -87,6 +92,17 @@ namespace ATMSimulator
         {
             notifyLbl.Text = message;
             notifyLbl.ForeColor = color;
+        }
+
+        private void SetEditableTextBoxesToZero()
+        {
+            depositTextBox.Text = "0";
+            withdrawTextBox.Text = "0";
+        }
+
+        private void ATM_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

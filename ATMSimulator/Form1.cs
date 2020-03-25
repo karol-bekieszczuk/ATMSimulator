@@ -39,7 +39,7 @@ namespace ATMSimulator
                 }
                 SetNotifyLabel("Wrong password or User", Color.Red);
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 //TODO
                 //Change errors to custom exception handlers

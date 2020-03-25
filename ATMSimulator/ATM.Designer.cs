@@ -84,6 +84,7 @@
             this.depositTextBox.Name = "depositTextBox";
             this.depositTextBox.Size = new System.Drawing.Size(100, 20);
             this.depositTextBox.TabIndex = 4;
+            this.depositTextBox.Text = "0";
             this.depositTextBox.TextChanged += new System.EventHandler(this.depositTextBox_TextChanged);
             this.depositTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckTextBoxText_KeyPress);
             // 
@@ -93,6 +94,7 @@
             this.withdrawTextBox.Name = "withdrawTextBox";
             this.withdrawTextBox.Size = new System.Drawing.Size(100, 20);
             this.withdrawTextBox.TabIndex = 5;
+            this.withdrawTextBox.Text = "0";
             this.withdrawTextBox.TextChanged += new System.EventHandler(this.withdrawTextBox_TextChanged);
             this.withdrawTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckTextBoxText_KeyPress);
             // 
@@ -149,6 +151,7 @@
             this.Controls.Add(this.depositButton);
             this.Name = "ATM";
             this.Text = "ATM";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ATM_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
