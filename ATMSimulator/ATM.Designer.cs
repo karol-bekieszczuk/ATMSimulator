@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.welcomeLbl = new System.Windows.Forms.Label();
             this.notifyLbl = new System.Windows.Forms.Label();
+            this.logOutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // depositButton
@@ -134,11 +135,22 @@
             this.notifyLbl.TabIndex = 9;
             this.notifyLbl.Text = "notifyLbl";
             // 
+            // logOutButton
+            // 
+            this.logOutButton.Location = new System.Drawing.Point(311, 164);
+            this.logOutButton.Name = "logOutButton";
+            this.logOutButton.Size = new System.Drawing.Size(75, 23);
+            this.logOutButton.TabIndex = 10;
+            this.logOutButton.Text = "Log out";
+            this.logOutButton.UseVisualStyleBackColor = true;
+            this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
+            // 
             // ATM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.notifyLbl);
             this.Controls.Add(this.welcomeLbl);
             this.Controls.Add(this.label3);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label welcomeLbl;
         private System.Windows.Forms.Label notifyLbl;
+        private System.Windows.Forms.Button logOutButton;
     }
 }

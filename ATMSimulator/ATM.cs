@@ -93,5 +93,12 @@ namespace ATMSimulator
         {
             Environment.Exit(0);
         }
+
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            var login = new Form1();
+            login.Show();
+            this.Dispose(false);
+        }
     }
 }
