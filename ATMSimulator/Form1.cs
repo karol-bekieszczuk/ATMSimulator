@@ -21,29 +21,17 @@ namespace ATMSimulator
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            try
+            User currentUser = FileManagement.DoesUserExist(@"C:\test\users.csv", cardNumberTextBox.Text, pinTextBox.Text);
+            if (!currentUser.Equals(null))
             {
-                //string old_dir = $"{Directory.GetCurrentDirectory()}/dummy_data/users.csv";
-                foreach (string usr in File.ReadAllLines(@"C:\test\users.csv", Encoding.UTF8))
-                {
-                    // 1. fName, 2. lName, 3. cardNumber 4. pinHash 5. balance
-                    string[] usrDataArr = usr.Split(':');
+                var atmForm = new ATM(currentUser);
+                atmForm.Show();
+                this.Dispose(false);
+            }
+            else
+                notifyLbl.Text = "File error, contact your administrator";
 
-                    if (usrDataArr[3] == cardNumberTextBox.Text && usrDataArr[4] == pinTextBox.Text)
-                    {
-                        var atmForm = new ATM(usrDataArr);
-                        atmForm.Show();
-                        this.Dispose(false);
-                    }
-                }
-                SetNotifyLabel("Wrong password or User", Color.Red);
-            }
-            catch (Exception err)
-            {
-                //TODO
-                //Change errors to custom exception handlers
-                MessageBox.Show(err.ToString());
-            }
+            SetNotifyLabel("Wrong password or User", Color.Red);
         }
 
         private void CheckTextBoxText_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,7 +45,6 @@ namespace ATMSimulator
 
         private void cardNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            // TODO change error messages to custom exceptions
             if (!Security.CheckTextboxOnlyNumbers(cardNumberTextBox))
                 SetNotifyLabel("Must be number, and cant be blank", Color.Red);
         }

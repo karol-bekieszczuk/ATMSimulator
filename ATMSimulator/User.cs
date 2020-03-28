@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATMSimulator
 {
-    class User
+    public class User
     {
         public User(string fName, string lName, string cardNumber, string pinHash, float balance)
         {
@@ -50,5 +50,14 @@ namespace ATMSimulator
             return true;
         }
 
+        public string getCardNumber()
+        {
+            return cardNumber;
+        }
+
+        public string getPinHash()
+        {
+            return pinHash;
+        }
     }
 }

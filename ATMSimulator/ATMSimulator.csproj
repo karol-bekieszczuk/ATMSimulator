@@ -51,6 +51,7 @@
     <Compile Include="ATM.Designer.cs">
       <DependentUpon>ATM.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileManagement.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

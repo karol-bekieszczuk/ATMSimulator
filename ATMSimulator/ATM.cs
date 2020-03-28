@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ATMSimulator
@@ -8,17 +10,16 @@ namespace ATMSimulator
     {
         User currentUser;
 
-        public ATM(string[] userData)
+        public ATM(User currentUser)
         {
             InitializeComponent();
-            currentUser = new User(userData[1], userData[2], userData[3], userData[4], float.Parse(userData[5]));
+            this.currentUser = currentUser;
 
             UpdateCurrentUserBalance();
             FillWelcomeLbl();
             SetNotifyLabel(string.Empty, Color.Black);
         }
 
-        // save changed balance in file
         private void depositButton_Click(object sender, EventArgs e)
         {
             if (Security.CheckTextboxOnlyNumbers(depositTextBox))
@@ -57,7 +58,6 @@ namespace ATMSimulator
 
         private void depositTextBox_TextChanged(object sender, EventArgs e)
         {
-            // TODO change error messages to custom exceptions
             if (!Security.CheckTextboxOnlyNumbers(depositTextBox))
                 SetNotifyLabel("Must be number, and cant be blank", Color.Red);
         }
