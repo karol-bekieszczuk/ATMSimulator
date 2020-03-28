@@ -15,7 +15,6 @@ ATM Demo, program simulates real ATM machine, with login system, depositing and 
 ## TODO
 
 ### Login form
-- [ ] security (hashing user card number and pin)
 - [x] dummy data
 
 ### Main form (after login)

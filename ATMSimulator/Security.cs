@@ -11,12 +11,6 @@ namespace ATMSimulator
 {
     public static class Security
     {
-        public static string HashString(string str)
-        {
-            // TODO
-            return "TODO";
-        }
-
         public static bool CheckTextboxOnlyNumbers(TextBox tb)
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(tb.Text, "^[0-9]") && !string.IsNullOrWhiteSpace(tb.Text))
