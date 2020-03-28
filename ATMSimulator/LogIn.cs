@@ -21,8 +21,8 @@ namespace ATMSimulator
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            User currentUser = FileManagement.DoesUserExist(@"C:\test\users.csv", cardNumberTextBox.Text, pinTextBox.Text);
-            if (!currentUser.Equals(null))
+            User currentUser = FileManagement.GetUser(@"C:\test\users.csv", cardNumberTextBox.Text, pinTextBox.Text);
+            if (!(currentUser is null))
             {
                 var atmForm = new ATM(currentUser);
                 atmForm.Show();

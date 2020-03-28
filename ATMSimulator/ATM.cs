@@ -25,9 +25,14 @@ namespace ATMSimulator
             if (Security.CheckTextboxOnlyNumbers(depositTextBox))
             {
                 currentUser.BalanceDeposit(float.Parse(depositTextBox.Text));
-                SetEditableTextBoxesToZero();
-                SetNotifyLabel("Money deposited", Color.Green);
-                UpdateCurrentUserBalance();
+                if (FileManagement.UpdateUsersDataFile(@"C:\test\users.csv", currentUser, float.Parse(depositTextBox.Text)))
+                {
+                    SetEditableTextBoxesToZero();
+                    SetNotifyLabel("Money deposited", Color.Green);
+                    UpdateCurrentUserBalance();
+                }
+                else
+                    SetNotifyLabel("File error, contact your administrator", Color.Red);
             }
         }
 
@@ -37,8 +42,13 @@ namespace ATMSimulator
             {
                 if (currentUser.BalanceWithdraw(float.Parse(withdrawTextBox.Text)))
                 {
-                    SetNotifyLabel("Money withdrawed", Color.Green);
-                    UpdateCurrentUserBalance();
+                    if (FileManagement.UpdateUsersDataFile(@"C:\test\users.csv", currentUser, 
+                        currentUser.getBalance() - float.Parse(withdrawTextBox.Text))){
+                        SetNotifyLabel("Money withdrawed", Color.Green);
+                        UpdateCurrentUserBalance();
+                    }
+                    else
+                        SetNotifyLabel("File error, contact your administrator", Color.Red);
                 }
                 else
                     SetNotifyLabel("Cant withdraw, not enough funds", Color.Red);

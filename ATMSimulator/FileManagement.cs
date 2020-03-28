@@ -9,7 +9,7 @@ namespace ATMSimulator
 {
     public static class FileManagement
     {
-        public static User DoesUserExist(string path, string inputCardNumber, string inputPinHash)
+        public static User GetUser(string path, string inputCardNumber, string inputPinHash)
         {
             try
             {
@@ -32,9 +32,64 @@ namespace ATMSimulator
         }
 
         //TODO
-        //public static bool UpdateUserBalanceInFile()
-        //{
+        private static string[] GetUsersArrWithUpdatedCurrentUserBalance(string path, User currentUser, float amount)
+        {
+            try
+            {
+                string[] currentUsrData = File.ReadAllLines(path, Encoding.UTF8);
+                List<string> updatedUsrDataList = new List<string>();
 
-        //}
+                foreach (string usr in currentUsrData)
+                {
+                    // 1. fName, 2. lName, 3. cardNumber 4. pinHash 5. balance
+                    string[] usrDataArr = usr.Split(':');
+
+                    if (usrDataArr[3] == currentUser.GetCardNumber() && usrDataArr[4] == currentUser.GetPinHash())
+                    {
+                        usrDataArr[5] = currentUser.getBalance().ToString();
+                    }
+                    updatedUsrDataList.Add(string.Join(":", usrDataArr));
+                }
+
+                return updatedUsrDataList.ToArray();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static bool UpdateUsersDataFile(string path, User currentUser, float amount)
+        {
+            string[] updatedUsersDataFile = GetUsersArrWithUpdatedCurrentUserBalance(path, currentUser, amount);
+            if (!(updatedUsersDataFile is null))
+            {
+                File.WriteAllText(path, string.Empty);
+            }
+            else
+            {
+                return false;
+            }
+
+            try
+            {
+                using (StreamWriter writter = new StreamWriter(path))
+                {
+                    if (!(updatedUsersDataFile is null))
+                    {
+
+                        foreach (string usr in updatedUsersDataFile)
+                        {
+                            writter.WriteLine(usr);
+                        }
+                    }
+                }
+            }
+            catch (IOException err)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

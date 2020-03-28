@@ -41,7 +41,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(60, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.Size = new System.Drawing.Size(88, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "card number";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,7 +51,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(76, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.Size = new System.Drawing.Size(30, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "PIN";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,7 +60,7 @@
             // 
             this.cardNumberTextBox.Location = new System.Drawing.Point(12, 25);
             this.cardNumberTextBox.Name = "cardNumberTextBox";
-            this.cardNumberTextBox.Size = new System.Drawing.Size(146, 20);
+            this.cardNumberTextBox.Size = new System.Drawing.Size(146, 22);
             this.cardNumberTextBox.TabIndex = 2;
             this.cardNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cardNumberTextBox.TextChanged += new System.EventHandler(this.cardNumberTextBox_TextChanged);
@@ -71,7 +71,7 @@
             this.pinTextBox.Location = new System.Drawing.Point(12, 64);
             this.pinTextBox.Name = "pinTextBox";
             this.pinTextBox.PasswordChar = '*';
-            this.pinTextBox.Size = new System.Drawing.Size(146, 20);
+            this.pinTextBox.Size = new System.Drawing.Size(146, 22);
             this.pinTextBox.TabIndex = 3;
             this.pinTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.pinTextBox.UseSystemPasswordChar = true;
@@ -93,11 +93,11 @@
             this.notifyLbl.AutoSize = true;
             this.notifyLbl.Location = new System.Drawing.Point(12, 129);
             this.notifyLbl.Name = "notifyLbl";
-            this.notifyLbl.Size = new System.Drawing.Size(46, 13);
+            this.notifyLbl.Size = new System.Drawing.Size(61, 17);
             this.notifyLbl.TabIndex = 5;
             this.notifyLbl.Text = "notifyLbl";
             // 
-            // Form1
+            // LogIn
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(170, 151);
@@ -109,9 +109,9 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "LogIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "LogIn";
             this.ResumeLayout(false);
             this.PerformLayout();
 
