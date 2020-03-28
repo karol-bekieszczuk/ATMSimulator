@@ -34,7 +34,7 @@ namespace ATMSimulator
         //TODO
         //public static bool UpdateUserBalanceInFile()
         //{
-        //    
+
         //}
     }
 }

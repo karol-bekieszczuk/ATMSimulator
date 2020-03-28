@@ -1,6 +1,6 @@
 ﻿namespace ATMSimulator
 {
-    partial class Form1
+    partial class LogIn
     {
         /// <summary>
         /// Wymagana zmienna projektanta.

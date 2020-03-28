@@ -24,7 +24,7 @@ namespace ATMSimulator
         {
             if (Security.CheckTextboxOnlyNumbers(depositTextBox))
             {
-                currentUser.balanceDeposit(float.Parse(depositTextBox.Text));
+                currentUser.BalanceDeposit(float.Parse(depositTextBox.Text));
                 SetEditableTextBoxesToZero();
                 SetNotifyLabel("Money deposited", Color.Green);
                 UpdateCurrentUserBalance();
@@ -35,7 +35,7 @@ namespace ATMSimulator
         {
             if (Security.CheckTextboxOnlyNumbers(withdrawTextBox))
             {
-                if (currentUser.balanceWithdraw(float.Parse(withdrawTextBox.Text)))
+                if (currentUser.BalanceWithdraw(float.Parse(withdrawTextBox.Text)))
                 {
                     SetNotifyLabel("Money withdrawed", Color.Green);
                     UpdateCurrentUserBalance();
@@ -96,7 +96,7 @@ namespace ATMSimulator
 
         private void logOutButton_Click(object sender, EventArgs e)
         {
-            var login = new Form1();
+            var login = new LogIn();
             login.Show();
             this.Dispose(false);
         }

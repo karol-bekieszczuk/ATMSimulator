@@ -28,9 +28,9 @@ namespace ATMSimulator
             return this.balance;
         }
 
-        public bool balanceWithdraw(float amount)
+        public bool BalanceWithdraw(float amount)
         {
-            if (withdrawBalanceCheck(amount))
+            if (CanWithdraw(amount))
             {
                 this.balance -= amount;
                 return true;
@@ -38,24 +38,24 @@ namespace ATMSimulator
             return false;
         }
 
-        public void balanceDeposit(float amount)
+        public void BalanceDeposit(float amount)
         {
             this.balance += amount;
         }
 
-        private bool withdrawBalanceCheck(float amount)
+        private bool CanWithdraw(float amount)
         {
             if ((this.balance - amount) <= 0)
                 return false;
             return true;
         }
 
-        public string getCardNumber()
+        public string GetCardNumber()
         {
             return cardNumber;
         }
 
-        public string getPinHash()
+        public string GetPinHash()
         {
             return pinHash;
         }
