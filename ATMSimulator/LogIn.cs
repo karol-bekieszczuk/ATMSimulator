@@ -21,7 +21,7 @@ namespace ATMSimulator
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            User currentUser = FileManagement.GetUser(@"C:\test\users.csv", cardNumberTextBox.Text, pinTextBox.Text);
+            User currentUser = FileManagement.GetUser(Constants.Links.UsersFilePath, cardNumberTextBox.Text, pinTextBox.Text);
             if (!(currentUser is null))
             {
                 var atmForm = new ATM(currentUser);
@@ -29,7 +29,7 @@ namespace ATMSimulator
                 this.Dispose(false);
             }
             else
-                notifyLbl.Text = "File error, contact your administrator";
+                notifyLbl.Text = Constants.Errors.FileError;
 
             SetNotifyLabel("Wrong password or User", Color.Red);
         }
@@ -39,20 +39,20 @@ namespace ATMSimulator
             if (!Security.CheckTextBoxText_KeyPress(sender, e))
             {
                 e.Handled = true;
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
             }
         }
 
         private void cardNumberTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!Security.CheckTextboxOnlyNumbers(cardNumberTextBox))
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
         }
 
         private void pinTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!Security.CheckTextboxOnlyNumbers(pinTextBox))
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
         }
 
         private void SetNotifyLabel(string message, Color color)

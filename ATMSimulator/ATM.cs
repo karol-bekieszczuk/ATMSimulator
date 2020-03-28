@@ -25,14 +25,14 @@ namespace ATMSimulator
             if (Security.CheckTextboxOnlyNumbers(depositTextBox))
             {
                 currentUser.BalanceDeposit(float.Parse(depositTextBox.Text));
-                if (FileManagement.UpdateUsersDataFile(@"C:\test\users.csv", currentUser, float.Parse(depositTextBox.Text)))
+                if (FileManagement.UpdateUsersDataFile(Constants.Links.UsersFilePath, currentUser, float.Parse(depositTextBox.Text)))
                 {
                     SetEditableTextBoxesToZero();
                     SetNotifyLabel("Money deposited", Color.Green);
                     UpdateCurrentUserBalance();
                 }
                 else
-                    SetNotifyLabel("File error, contact your administrator", Color.Red);
+                    SetNotifyLabel(Constants.Errors.FileError, Color.Red);
             }
         }
 
@@ -42,13 +42,13 @@ namespace ATMSimulator
             {
                 if (currentUser.BalanceWithdraw(float.Parse(withdrawTextBox.Text)))
                 {
-                    if (FileManagement.UpdateUsersDataFile(@"C:\test\users.csv", currentUser, 
+                    if (FileManagement.UpdateUsersDataFile(Constants.Links.UsersFilePath, currentUser, 
                         currentUser.getBalance() - float.Parse(withdrawTextBox.Text))){
                         SetNotifyLabel("Money withdrawed", Color.Green);
                         UpdateCurrentUserBalance();
                     }
                     else
-                        SetNotifyLabel("File error, contact your administrator", Color.Red);
+                        SetNotifyLabel(Constants.Errors.FileError, Color.Red);
                 }
                 else
                     SetNotifyLabel("Cant withdraw, not enough funds", Color.Red);
@@ -69,13 +69,13 @@ namespace ATMSimulator
         private void depositTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!Security.CheckTextboxOnlyNumbers(depositTextBox))
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
         }
 
         private void withdrawTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!Security.CheckTextboxOnlyNumbers(withdrawTextBox))
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
         }
 
         private void CheckTextBoxText_KeyPress(object sender, KeyPressEventArgs e)
@@ -83,7 +83,7 @@ namespace ATMSimulator
             if (!Security.CheckTextBoxText_KeyPress(sender, e))
             {
                 e.Handled = true;
-                SetNotifyLabel("Must be number, and cant be blank", Color.Red);
+                SetNotifyLabel(Constants.Errors.InputNotNumber, Color.Red);
             }
         }
 
