@@ -15,11 +15,12 @@ ATM Demo, program simulates real ATM machine, with login system, depositing and 
 ## TODO
 
 ### Login form
-- security
-- dummy data
+- [ ] security (hashing user card number and pin)
+- [x] dummy data
 
 ### Main form (after login)
-- checking user account
-- deposit
-- withdraw
-- switching user account
+- [x] checking user account
+- [x] deposit
+- [x] withdraw
+- [x] updating users.csv file
+- [x] switching user account
